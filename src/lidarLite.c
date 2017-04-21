@@ -50,7 +50,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
            // send "measure" command
            hiVal = wiringPiI2CWriteReg8(fd, MEASURE_REG, MEASURE_VAL);
            if (_dbg) printf("write res=%d\n", hiVal);
-           delay(20);
        
            // Read second byte and append with first 
            loVal = _read_byteNZ(fd, DISTANCE_REG_LO) ;        
@@ -106,7 +105,6 @@ unsigned char  _read_byte_raw(int fd, int reg, bool allowZero) {
             
             // Retry on error
             if (val == ERROR_READ || (val==0 && !allowZero) ) {
-                delay (20) ;		// ms
                // if (_dbg) printf(".");
                 if (i++ > 50) {
                    // Timeout
